@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIV Stories | AIDS, Poverty &amp; Faith in Mamelodi Township, South Africa</title>
+<meta name="description" content="Stories related to HIV/AIDS, Poverty and Faith from Mamelodi Township, South Africa. A project by Nathan Clendenin in fulfillment of a master's degree in Journalism and Mass Communication at UNC Chapel Hill.">
+<meta property="og:title" content="HIV Stories | Mamelodi Township, South Africa">
+<meta property="og:description" content="Five audio-photo documentary stories about HIV/AIDS, poverty and faith in South Africa.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #ffffff;
+  --surface:#f5f3f0;
+  --text:   #1a1614;
+  --muted:  #7a7068;
+  --red:    #c41230;
+  --line:   #e0dbd5;
+  --dark:   #1a1614;
+}
+html,body{
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:300;
+}
+
+/* ── HEADER ── */
+.site-header{
+  border-bottom:2px solid var(--red);
+  padding:28px 48px 24px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.header-left{}
+.site-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,44px);
+  font-weight:400;
+  color:var(--dark);
+  letter-spacing:-.02em;
+  line-height:1;
+}
+.site-title strong{color:var(--red);font-weight:600}
+.site-sub{
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-top:8px;line-height:1.8;
+}
+.header-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.blog-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);text-decoration:none;
+  border:1px solid var(--red);
+  border-radius:2px;padding:5px 12px;
+  transition:all .2s;
+}
+.blog-link:hover{background:var(--red);color:#fff}
+.blog-link svg{width:11px;height:11px}
+.ribbon-wrap{
+  display:flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+.ribbon-icon{
+  width:14px;height:18px;
+  background:var(--red);
+  clip-path:polygon(50% 100%, 0% 30%, 20% 0%, 80% 0%, 100% 30%);
+  flex-shrink:0;
+  opacity:.85;
+}
+
+/* ── INTRO ── */
+.intro{
+  padding:36px 48px 32px;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:flex-start;gap:32px;
+  flex-wrap:wrap;
+}
+.intro-text{
+  flex:1;min-width:260px;
+  font-size:15px;line-height:1.85;color:var(--muted);
+  max-width:600px;
+}
+.intro-text strong{color:var(--text);font-weight:600}
+.intro-meta{
+  flex:0 0 auto;
+  border-left:3px solid var(--red);
+  padding-left:18px;
+  font-size:11px;line-height:2;color:var(--muted);
+  letter-spacing:.04em;
+}
+.intro-meta strong{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+
+/* ── STORY GRID ── */
+.stories-label{
+  padding:24px 48px 12px;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;
+}
+.stories{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;
+  background:var(--line);
+  border-bottom:1px solid var(--line);
+}
+.story-card{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  cursor:pointer;display:block;text-decoration:none;
+  background:var(--bg);
+}
+.story-thumb{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease,filter .4s ease;
+  filter:brightness(.88) saturate(.9);
+}
+.story-card:hover .story-thumb{
+  transform:scale(1.04);
+  filter:brightness(.6) saturate(.85);
+}
+.story-gradient{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 55%,transparent 100%);
+  opacity:0;transition:opacity .35s;
+}
+.story-card:hover .story-gradient{opacity:1}
+
+/* Always-visible bottom strip */
+.story-strip{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(255,255,255,.96));
+  padding:32px 18px 16px;
+  transition:background .3s;
+}
+.story-card:hover .story-strip{
+  background:transparent;
+}
+.story-num{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);margin-bottom:4px;
+  transition:color .3s;
+}
+.story-card:hover .story-num{color:rgba(196,18,48,.85)}
+.story-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(17px,2vw,21px);font-weight:400;
+  color:var(--dark);line-height:1.2;
+  transition:color .3s;
+}
+.story-card:hover .story-title{color:#f0e8dc}
+.story-subject{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:4px;
+  transition:color .3s;
+}
+.story-card:hover .story-subject{color:rgba(196,18,48,.9)}
+
+/* Hover blurb + play */
+.story-hover{
+  position:absolute;bottom:72px;left:0;right:0;
+  padding:0 18px;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s,transform .3s;
+}
+.story-card:hover .story-hover{opacity:1;transform:translateY(0)}
+.story-blurb{
+  font-size:12px;color:rgba(240,232,220,.8);
+  line-height:1.6;margin-bottom:10px;
+  text-shadow:0 1px 3px rgba(0,0,0,.5);
+}
+.play-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(196,18,48,.85);
+}
+.play-circle{
+  width:20px;height:20px;border-radius:50%;
+  border:1px solid rgba(196,18,48,.5);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.play-circle svg{width:7px;height:7px;fill:#c41230;margin-left:1px}
+
+/* ── FOOTER ── */
+footer{
+  padding:24px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+  border-top:1px solid var(--line);
+}
+.footer-copy{
+  font-size:11px;color:var(--muted);line-height:1.8;
+}
+.footer-copy a{color:var(--red);text-decoration:none}
+.footer-copy a:hover{text-decoration:underline}
+.footer-links{
+  display:flex;align-items:center;gap:20px;
+}
+.footer-links a{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.footer-links a:hover{color:var(--red)}
+
+@media(max-width:640px){
+  .site-header,.intro,.stories-label,footer{padding-left:20px;padding-right:20px}
+  .stories{grid-template-columns:1fr}
+  .story-hover{opacity:1;transform:none}
+  .story-gradient{opacity:1}
+  .story-card:hover .story-title,
+  .story-card:hover .story-num,
+  .story-card:hover .story-subject{color:inherit}
+  .header-right{align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-left">
+    <div class="site-title">HIV <strong>Stories</strong></div>
+    <div class="site-sub">
+      AIDS · Poverty · Faith<br>
+      Mamelodi Township, South Africa
+    </div>
+  </div>
+  <div class="header-right">
+    <a href="https://hivstories.org/blog/" class="blog-link" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 20V10M12 20V4M6 20v-6"/>
+      </svg>
+      Journal &amp; Blog
+    </a>
+    <div class="ribbon-wrap">
+      <div class="ribbon-icon"></div>
+      HIV Awareness
+    </div>
+  </div>
+</header>
+
+<div class="intro">
+  <p class="intro-text">
+    <strong>Five audio-photo documentary stories</strong> from Mamelodi Township, South Africa —
+    where the HIV/AIDS epidemic reshapes daily life, family, and faith.
+    Each story is told through photography and the voices of those who live it.
+  </p>
+  <div class="intro-meta">
+    <strong>Nathan Clendenin</strong>
+    Master's Thesis<br>
+    UNC Chapel Hill<br>
+    School of Journalism<br>
+    &amp; Mass Communication
+  </div>
+</div>
+
+<div class="stories-label">
+  <span>Five Stories</span>
+  <span>Click to listen</span>
+</div>
+
+<div class="stories" id="storiesGrid"></div>
+
+<footer>
+  <div class="footer-copy">
+    © Nathan Clendenin · University of North Carolina at Chapel Hill<br>
+    <a href="https://hivstories.org/blog/" target="_blank" rel="noopener">hivstories.org/blog</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:nathan@wearestorydriven.com">nathan@wearestorydriven.com</a>
+  </div>
+  <div class="footer-links">
+    <a href="https://hivstories.org/blog/" target="_blank" rel="noopener">Blog</a>
+    <a href="https://wearestorydriven.com" target="_blank" rel="noopener">StoryDriven</a>
+  </div>
+</footer>
+
+<script src="stories.js"></script>
+<script>
+const grid = document.getElementById('storiesGrid');
+STORIES.forEach((story, idx) => {
+  const a = document.createElement('a');
+  a.className = 'story-card';
+  a.href = `story.html?id=${story.id}`;
+  const dur = Math.floor(story.duration / 60) + ':' +
+    String(story.duration % 60).padStart(2, '0');
+  a.innerHTML = `
+    <img class="story-thumb"
+         src="${story.path}${story.tn}"
+         alt="${story.title}"
+         loading="${idx < 2 ? 'eager' : 'lazy'}">
+    <div class="story-gradient"></div>
+    <div class="story-hover">
+      <div class="story-blurb">${story.blurb}</div>
+      <div class="play-row">
+        <div class="play-circle">
+          <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+        </div>
+        Listen · ${dur}
+      </div>
+    </div>
+    <div class="story-strip">
+      <div class="story-num">Story ${idx + 1} of ${STORIES.length}</div>
+      <div class="story-title">${story.title}</div>
+      <div class="story-subject">${story.subject}</div>
+    </div>
+  `;
+  grid.appendChild(a);
+});
+</script>
+</body>
+</html>
