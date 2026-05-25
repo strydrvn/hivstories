@@ -66,7 +66,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);
 
 /* ── IMAGE AREA ── */
 .img-area{
-  position:relative;overflow:hidden;background:#111;
+  position:relative;overflow:hidden;background:#fff;
 }
 .slide{
   position:absolute;inset:0;
@@ -372,17 +372,18 @@ function showSlide(idx, instant) {
   const nextLayer = 1 - activeLayer;
 
   function doSwap() {
+    const oldLayer = activeLayer;
+    activeLayer = nextLayer;
+    captionEl.textContent = sl.caption || '';
     if (instant) {
-      slideEl(activeLayer).classList.add('hidden');
+      slideEl(oldLayer).classList.add('hidden');
       slideEl(nextLayer).classList.remove('hidden');
     } else {
       slideEl(nextLayer).classList.remove('hidden');
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        slideEl(activeLayer).classList.add('hidden');
-      }));
+      setTimeout(() => {
+        if (activeLayer !== oldLayer) slideEl(oldLayer).classList.add('hidden');
+      }, 550);
     }
-    activeLayer = nextLayer;
-    captionEl.textContent = sl.caption || '';
   }
 
   if (preloadCache[src]) {
